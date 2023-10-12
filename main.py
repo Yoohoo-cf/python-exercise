@@ -1,19 +1,11 @@
-# Exercises Module 5
+# Exercises Module 5.4
 
-num = int(input("Enter a number to check if it is a prime number: "))
+cities = []
 
-if num > 1:
-    is_prime = True
-    for i in range(2, int(num/2) + 1):
-        if (num % i) == 0:
-            is_prime = False
-            break
+for i in range(5):
+    city = input("Enter a city name: ")
+    cities.append(city)
 
-    if is_prime:
-        print(num, "is a prime number")
-
-    else:
-        print(num, "is not a prime number")
-
-else:
-    print(num, "is not a prime number")
+print("List of cities:")
+for city in cities:
+    print (city)
