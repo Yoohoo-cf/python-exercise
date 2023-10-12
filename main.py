@@ -1,11 +1,31 @@
-# Exercises Module 5.4
+# Exercises Module 6.1
 
-cities = []
+"""
+Write a function that returns a random dice roll between 1 and 6.
+The function should not have any parameters.
+Write a main program that rolls the dice until the result is 6.
+The main program should print out the result of each roll.
+"""
 
-for i in range(5):
-    city = input("Enter a city name: ")
-    cities.append(city)
+import random
 
-print("List of cities:")
-for city in cities:
-    print (city)
+def roll_dice():
+    return random.randint(1, 6)
+
+def main():
+    rolls = 0
+    while True:
+        result = roll_dice()
+        rolls += 1
+        print(f"Roll {rolls}: {result}")
+
+        if result == 6:
+            break
+
+
+main()
+
+
+
+
+
