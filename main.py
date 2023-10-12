@@ -1,34 +1,31 @@
-# Exercises Module 6.4
+# Exercises Module 6.5
 
 """
 Write a function that gets a list of integers as a parameter.
-The function returns the sum of all the numbers in the list.
-For testing, write a main program where you create a list,
-call the function, and print out the value it returned.
+The function returns a second list that is otherwise the same as the original list
+except that all uneven numbers have been removed. For testing, write a main program
+where you create a list, call the function, and then print out both the original
+as well as the cut-down list.
 """
 
-def int_sum(list):
+def remove_odd_list(list):
 
-    total = sum(list)
-    return total
+    even_list = []
 
+    for x in list:
+        if x % 2 == 0:
+            even_list.append(x)
+
+    return even_list
 
 def main():
-    int_list = [1, 4, 5, 7, 9]
-    result = int_sum(int_list)
+    list = [5, 7, 90, 23, 56, 70]
 
-    print(f"The sum of all the numbers in the list is: {result}")
+    even_list = remove_odd_list(list)
+
+    print(f"The original list is: {list}")
+    print(f"The list has been remove uneven number is: {even_list}")
 
 main()
-
-
-
-
-
-
-
-
-
-
 
 
