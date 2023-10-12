@@ -1,32 +1,26 @@
-# Exercises Module 6.3
+# Exercises Module 6.4
 
 """
-Write a function that gets the quantity of gasoline in American gallons
-and returns the number converted to litres. Write a main program that
-asks for a volume in gallons from the user and converts the value to liters.
-The conversion must be done by using the function. Conversions continue
-until the user inputs a negative value.
+Write a function that gets a list of integers as a parameter.
+The function returns the sum of all the numbers in the list.
+For testing, write a main program where you create a list,
+call the function, and print out the value it returned.
 """
 
-def gallons_to_litres(gallons):
+def int_sum(list):
 
-    litres = gallons * 3.78541
-
-    return litres
+    total = sum(list)
+    return total
 
 
 def main():
-    while True:
-        gallons = float(input("Enter the quantity of gasoline in American gallons: "))
+    int_list = [1, 4, 5, 7, 9]
+    result = int_sum(int_list)
 
-        if gallons < 0:
-            print("You should have a positive gallons volume.")
-            break
-
-        litres = gallons_to_litres(gallons)
-        print(f"{gallons} American gallons is equal to {litres: .2f} liters.")
+    print(f"The sum of all the numbers in the list is: {result}")
 
 main()
+
 
 
 
