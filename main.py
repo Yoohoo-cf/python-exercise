@@ -1,31 +1,41 @@
-# Exercises Module 6.5
+# Exercises Module 8.1
 
 """
-Write a function that gets a list of integers as a parameter.
-The function returns a second list that is otherwise the same as the original list
-except that all uneven numbers have been removed. For testing, write a main program
-where you create a list, call the function, and then print out both the original
-as well as the cut-down list.
+Write a program that asks the user to enter the ICAO code of an airport.
+The program fetches and prints out the corresponding airport name and
+location (town) from the airport database used on this course.
+The ICAO codes are stored in the ident column of the airport table.
 """
 
-def remove_odd_list(list):
+import mysql.connector
 
-    even_list = []
+connection = mysql.connector.connect(
+    host='127.0.0.1',
+    port=3306,
+    database="exercises",
+    user="dbuser",
+    password="707708",
+    autocommit=True
+)
 
-    for x in list:
-        if x % 2 == 0:
-            even_list.append(x)
+def getairportbyicao(ICAO_code):
+    sql = "SELECT ID, name, municipality FROM airports"
+    sql += " WHERE ident='" + ICAO_code + "'"
+    print(sql)
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    if cursor.rowcount > 0:
+        for row in result:
+            print(f"The airport you are finding is: {row[1]}. It is located at {row[2]}")
+    return
 
-    return even_list
 
-def main():
-    list = [5, 7, 90, 23, 56, 70]
+ICAO_code = input('Enter an ICAO code to find the airport: ')
+getairportbyicao(ICAO_code)
 
-    even_list = remove_odd_list(list)
 
-    print(f"The original list is: {list}")
-    print(f"The list has been remove uneven number is: {even_list}")
 
-main()
+
 
 
