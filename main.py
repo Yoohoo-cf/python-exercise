@@ -1,12 +1,16 @@
-# Exercises Module 8.2
+# Exercises Module 8.3
 
 """
-Write a program that asks the user to enter the area code (for example FI)
-and prints out the airports located in that country ordered by airport type.
-For example, Finland has 65 small airports, 15 helicopter airports and so on.
+Write a program that asks the user to enter the ICAO codes of two airports.
+The program prints out the distance between the two airports in kilometers.
+The calculation is based on the airport coordinates fetched from the database.
+Calculate the distance using the geopy library: https://geopy.readthedocs.io/en/stable/.
+Install the library by selecting View / Tool Windows / Python Packages in your PyCharm IDE,
+write geopy into the search field and finish the installation.
 """
 
 import mysql.connector
+from geopy import distance
 
 connection = mysql.connector.connect(
     host='127.0.0.1',
@@ -17,21 +21,31 @@ connection = mysql.connector.connect(
     autocommit=True
 )
 
-def getairportsbyareacode(area_code):
-    sql = "SELECT ID, name, type, COUNT(*) AS count FROM airports"
-    sql += " WHERE iso_country='" + area_code + "' GROUP BY type ORDER BY count desc"
+def get_airport_coordinates_by_icao(ICAO_code):
+    sql = "SELECT ID, latitude_deg, longitude_deg FROM airports"
+    sql += " WHERE ident='" + ICAO_code + "'"
     print(sql)
     cursor = connection.cursor()
     cursor.execute(sql)
-    result = cursor.fetchall()
-    if cursor.rowcount > 0:
-        for row in result:
-            print(f"The iso_country of {area_code} has {row[3]} {row[2]} airports")
-    return
+    coordinates = cursor.fetchall()
+    if coordinates:
+        return coordinates
+    else:
+        print("Could not find this ICAO_code in database")
+        return
 
 
-area_code = input('Enter an area code to find the corresponding airports types(eg: FI): ')
-getairportsbyareacode(area_code)
+
+ICAO_code1 = input('Enter a first ICAO code to find the first airport address: ')
+ICAO_code2 = input('Enter a second ICAO code to find the second airport address: ')
+
+coords1 = get_airport_coordinates_by_icao(ICAO_code1)
+coords2 = get_airport_coordinates_by_icao(ICAO_code2)
+
+print(distance.distance(coords1, coords2).kilometers)
+
+
+
 
 
 
