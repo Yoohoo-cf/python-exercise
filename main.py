@@ -1,4 +1,4 @@
-# Exercises Module 8.1
+# Exercises Module 8.2
 
 """
 Write a program that asks the user to enter the area code (for example FI)
