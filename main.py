@@ -1,9 +1,10 @@
 # Exercises Module 8.1
 
 """
-Write a program that asks the user to enter the area code (for example FI)
-and prints out the airports located in that country ordered by airport type.
-For example, Finland has 65 small airports, 15 helicopter airports and so on.
+Write a program that asks the user to enter the ICAO code of an airport.
+The program fetches and prints out the corresponding airport name and
+location (town) from the airport database used on this course.
+The ICAO codes are stored in the ident column of the airport table.
 """
 
 import mysql.connector
@@ -17,21 +18,27 @@ connection = mysql.connector.connect(
     autocommit=True
 )
 
-def getairportsbyareacode(area_code):
-    sql = "SELECT ID, name, type, COUNT(*) AS count FROM airports"
-    sql += " WHERE iso_country='" + area_code + "' GROUP BY type ORDER BY count desc"
+def get_airport_by_icao(ICAO_code):
+    sql = "SELECT ID, name, municipality FROM airports"
+    sql += " WHERE ident='" + ICAO_code + "'"
     print(sql)
     cursor = connection.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
     if cursor.rowcount > 0:
         for row in result:
-            print(f"The iso_country of {area_code} has {row[3]} {row[2]} airports")
+            print(f"The airport you are finding is: {row[1]}. It is located at {row[2]}")
     return
 
 
-area_code = input('Enter an area code to find the corresponding airports types(eg: FI): ')
-getairportsbyareacode(area_code)
+ICAO_code = input('Enter an ICAO code to find the airport: ')
+get_airport_by_icao(ICAO_code)
+
+
+
+
+
+
 
 
 
