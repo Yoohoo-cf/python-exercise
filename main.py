@@ -1,5 +1,5 @@
 
-# Exercises Module 6.6
+# Exercises 6.6
 
 import math
 def d(dia,price):
