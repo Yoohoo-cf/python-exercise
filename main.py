@@ -1,4 +1,4 @@
-# Exercises Module 6.5
+# Exercises 6.5
 
 def remove_odd_list(list):
 
