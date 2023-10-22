@@ -1,4 +1,4 @@
-# Exercises Module 6.2
+# Exercises 6.2
 
 import random
 
