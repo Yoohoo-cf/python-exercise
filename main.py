@@ -1,4 +1,4 @@
-# Exercises Module 6.4
+# Exercises 6.4
 
 def int_sum(list):
 
