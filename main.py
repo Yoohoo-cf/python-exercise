@@ -1,30 +1,29 @@
-# Exercises Module 6.3
+# Exercises Module 6.2
 
 """
-Write a function that gets the quantity of gasoline in American gallons
-and returns the number converted to litres. Write a main program that
-asks for a volume in gallons from the user and converts the value to liters.
-The conversion must be done by using the function. Conversions continue
-until the user inputs a negative value.
+Gets the number of sides on the dice as a parameter.
+With the modified function you can for example roll a 21-sided role-playing dice.
+The difference to the last exercise is that the dice rolling in
+the main program continues until the program gets the maximum
+number on the dice, which is asked from the user at the beginning.
 """
 
-def gallons_to_litres(gallons):
+import random
 
-    litres = gallons * 3.78541
-
-    return litres
-
+def roll_dice(sides):
+    return random.randint(1, sides)
 
 def main():
+    sides = int(input("How many sides are you playing on this dice? "))
+    rolls = 0
+
     while True:
-        gallons = float(input("Enter the quantity of gasoline in American gallons: "))
+        result = roll_dice(sides)
+        rolls += 1
+        print(f"Roll {rolls}: {result}")
 
-        if gallons < 0:
-            print("You should have a positive gallons volume.")
+        if result == sides:
             break
-
-        litres = gallons_to_litres(gallons)
-        print(f"{gallons} American gallons is equal to {litres: .2f} liters.")
 
 main()
 
