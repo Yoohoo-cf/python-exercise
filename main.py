@@ -1,4 +1,4 @@
-# Exercises Module 6.3
+# Exercises 6.3
 
 def gallons_to_litres(gallons):
 
