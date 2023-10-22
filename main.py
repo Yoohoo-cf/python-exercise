@@ -1,4 +1,4 @@
-# Exercises Module 8.2
+# Exercises 8.2
 
 import mysql.connector
 
